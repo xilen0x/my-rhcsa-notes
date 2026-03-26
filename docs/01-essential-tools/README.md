@@ -117,3 +117,52 @@ ln -s /tmp/original.txt /tmp/softlink.txt
 # Verify inodes (hard link shares inode with original)
 ls -li /tmp/original.txt /tmp/hardlink.txt /tmp/softlink.txt
 ```
+
+---
+
+## Permissions ugo/rwx
+
+### Reading octal notation
+
+| Value | Binary | Permissions |
+|-------|--------|-------------|
+| 7 | 111 | rwx |
+| 6 | 110 | rw- |
+| 5 | 101 | r-x |
+| 4 | 100 | r-- |
+| 0 | 000 | --- |
+
+Each bit: r=4, w=2, x=1. Add them to get the octal value.
+
+```bash
+# Symbolic notation
+chmod u+x file.txt        # add execute to owner
+chmod g-w file.txt        # remove write from group
+chmod o=r file.txt        # set others to read only
+chmod a+x file.txt        # add execute to all (ugo)
+
+# Octal notation
+chmod 644 file.txt        # rw-r--r--
+chmod 755 file.txt        # rwxr-xr-x
+chmod 600 file.txt        # rw-------
+chmod 750 file.txt        # rwxr-x---
+
+# Change owner and group
+chown student file.txt
+chown student:wheel file.txt
+chgrp wheel file.txt
+
+# Recursive
+chmod -R 750 /tmp/permlab/
+```
+
+### Common permission patterns
+
+| Octal | Symbolic | Use case |
+|-------|----------|----------|
+| 644 | rw-r--r-- | Regular files |
+| 755 | rwxr-xr-x | Directories, scripts |
+| 600 | rw------- | Private files (SSH keys) |
+| 750 | rwxr-x--- | Scripts restricted to group |
+| 640 | rw-r----- | Config files restricted to group |
+
