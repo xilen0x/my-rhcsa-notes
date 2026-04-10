@@ -2,7 +2,7 @@
 
 ## Diagram
 
-![LVM Creation Order](lvm-diagram.svg)
+![LVM Creation Order](lvm-diagram.png)
 
 > Creation order: **bottom to top**. Usage order: top to bottom.
 
