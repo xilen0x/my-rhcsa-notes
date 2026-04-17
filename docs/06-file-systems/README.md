@@ -110,7 +110,7 @@ journalctl -u autofs --no-pager | tail -20
 
 ---
 
-# Extend Logical Volumes (online)
+# Extend Logical Volumes
 
 One of LVM's key advantages — extend storage without unmounting or interrupting the service.
 
@@ -157,12 +157,14 @@ xfs_growfs /data
 | Shrink | Not supported | `resize2fs /dev/vg/lv SIZE` |
 | Argument | mount point | device path |
 
----
+# Others exercises
+## Extend Logical Volumes NOTES
+[Ver CHECKLIST Extend LV](extend_lvm.md)
 
-## Exam tips
 
-- Always run `showmount -e <server>` before configuring autofs — use only paths that actually exist
-- autofs subdirectories are virtual — never create them manually with `mkdir`
-- `lvextend` alone is not enough — always follow with `xfs_growfs` or `resize2fs`
-- XFS can only grow, never shrink — use ext4 if you need to reduce a volume
-- `nsswitch.conf` must have `automount: files` for autofs to read local config files
+
+## Recreate Logical Volume (XFS → EXT4)
+[Recreate Logical Volume (XFS → EXT4)](lvm_guide.md)
+
+## Real Reduction (EXT4)
+[Real Reduction (EXT4)](lvm_guide.md)
